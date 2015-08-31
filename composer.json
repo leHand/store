@@ -28,10 +28,7 @@
         "post-root-package-install": [
             "SymfonyStandard\\Composer::hookRootPackageInstall"
         ],
-        "post-install-cmd": [
-            "rm -rf app/cache/*",
-            "app/console assets:install",
-            "app/console assetic:dump",
+        "post-install-cmd":
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
