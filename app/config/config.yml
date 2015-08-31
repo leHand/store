@@ -23,6 +23,9 @@ framework:
         engines: ['twig']
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
+    session:
+      name:        "%session_name%"
+      handler_id:  ~
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
