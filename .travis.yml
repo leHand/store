@@ -26,6 +26,7 @@ env:
 
 before_install:
   - composer self-update
+  - cp app/config/parameters.yml.dist app/config/parameters.yml
 
 install:
   - if [ "$deps" = "no" ]; then composer install; fi;
@@ -34,7 +35,7 @@ install:
 
 script:
   - mkdir -p build/logs
-  - phpunit --coverage-clover build/logs/clover.xml
+  - phpunit -c app --coverage-clover build/logs/clover.xml
 
 after_script:
   - php vendor/bin/coveralls -v
