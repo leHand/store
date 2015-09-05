@@ -4,6 +4,11 @@ namespace AppBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class DefaultControllerTest
+ *
+ * @package AppBundle\Tests\Controller
+ */
 class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()
@@ -12,6 +17,7 @@ class DefaultControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/');
 
-        $this->assertTrue($crawler->filter('html:contains("Hello")')->count() > 0);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertTrue($crawler->filter('html:contains("Homepage")')->count() > 0);
     }
 }
