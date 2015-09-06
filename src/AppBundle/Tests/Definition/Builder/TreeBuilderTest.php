@@ -9,7 +9,7 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
  *
  * @package Symfony\Component\Config\Tests\Definition\Builder
  */
-class TreeBuilderTest extends Webt
+class TreeBuilderTest extends \PHPUnit_Framework_TestCase
 {
     public function testDefinitionReutnsTree()
     {
