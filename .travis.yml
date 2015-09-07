@@ -38,4 +38,4 @@ script:
   - phpunit -c app/ --coverage-clover build/logs/clover.xml
 
 after_script:
-  - php vendor/satooshi/php-coveralls/composer/bin/coveralls -v
+  - php ./bin/coveralls -v
