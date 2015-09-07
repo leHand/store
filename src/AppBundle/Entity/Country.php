@@ -10,13 +10,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CountryRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Country
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", options={"unsigned":true})
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned":true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -40,7 +41,7 @@ class Country
     /**
      * @var string
      *
-     * @ORM\Column(name="currency", type="string", length=3)
+     * @ORM\Column(name="currency", type="string", length=3, nullable=false)
      */
     private $currency;
 
@@ -212,5 +213,23 @@ class Country
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getId();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        if (!$this->getUpdated()) {
+            $this->setUpdated(new \DateTime());
+        }
+        if (!$this->getCreated()) {
+            $this->setCreated(new \DateTime());
+        }
     }
 }
