@@ -20,7 +20,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/data-fixtures": "^1.1",
         "friendsofsymfony/jsrouting-bundle": "^1.5",
-        "doctrine/doctrine-fixtures-bundle": "^2.2"
+        "doctrine/doctrine-fixtures-bundle": "^2.2",
+        "snc/redis-bundle": "^1.1",
+        "phpunit/phpunit": "3.7.28"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
