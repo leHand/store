@@ -38,7 +38,7 @@ install:
 
 script:
   - mkdir -p build/logs
-  - ./bin/phpunit -c app/ --coverage-clover build/logs/clover.xml
+  - phpunit -c app/ --coverage-clover build/logs/clover.xml
 
 after_script:
   - ./bin/coveralls -v
