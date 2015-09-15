@@ -2,8 +2,7 @@
 
 namespace AppBundle\Tests\Entity;
 
-
-use AppBundle\Entity\Country;
+use AppBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -11,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
  *
  * @package AppBundle\Tests\Entity
  */
-class CountryTest extends KernelTestCase
+class CategoryTest extends KernelTestCase
 {
 
     /**
@@ -19,8 +18,8 @@ class CountryTest extends KernelTestCase
      */
     public function testInstanceofCountry()
     {
-        $country = new Country();
-        $this->assertInstanceOf('AppBundle\Entity\Country', $country);
+        $category = new Category();
+        $this->assertInstanceOf('AppBundle\Entity\Category', $category);
     }
 
 }

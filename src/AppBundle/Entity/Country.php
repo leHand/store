@@ -160,11 +160,11 @@ class Country
     }
 
     /**
-     * Get active
+     * Is active
      *
      * @return boolean 
      */
-    public function getActive()
+    public function isActive()
     {
         return $this->active;
     }
