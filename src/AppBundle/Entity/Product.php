@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Product
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  *      @ORM\Index(name="part_number_idx", columns={"part_number"}),
  *  })
  * @ORM\Entity
+ * @UniqueEntity(fields={"vendor_id", "part_number"})
  */
 class Product
 {
@@ -26,6 +28,16 @@ class Product
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Vendor")
+     * @ORM\JoinColumns({
+     *      @ORM\JoinColumn(name="vendor_id", referencedColumnName="id")
+     * })
+     */
+    private $vendor;
 
     /**
      * @var string
@@ -87,7 +99,6 @@ class Product
     private $updated;
 
 
-
     /**
      * Get id
      *
@@ -99,35 +110,23 @@ class Product
     }
 
     /**
-     * Set name
+     * Get partNumber
      *
-     * @param string $name
-     * @return Product
+     * @return string
      */
-    public function setName($name)
+    public function getPartNumber ()
     {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
+        return $this->partNumber;
     }
 
     /**
      * Set partNumber
      *
      * @param string $partNumber
-     * @return Product
+     *
+*@return Product
      */
-    public function setPartNumber($partNumber)
+    public function setPartNumber ($partNumber)
     {
         $this->partNumber = $partNumber;
 
@@ -135,32 +134,9 @@ class Product
     }
 
     /**
-     * Get partNumber
-     *
-     * @return string 
-     */
-    public function getPartNumber()
-    {
-        return $this->partNumber;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Product
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -168,14 +144,15 @@ class Product
     }
 
     /**
-     * Set status
+     * Set description
      *
-     * @param integer $status
+     * @param string $description
+     *
      * @return Product
      */
-    public function setStatus($status)
+    public function setDescription ($description)
     {
-        $this->status = $status;
+        $this->description = $description;
 
         return $this;
     }
@@ -183,7 +160,7 @@ class Product
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {
@@ -191,14 +168,15 @@ class Product
     }
 
     /**
-     * Set active
+     * Set status
      *
-     * @param boolean $active
+     * @param integer $status
+     *
      * @return Product
      */
-    public function setActive($active)
+    public function setStatus ($status)
     {
-        $this->active = $active;
+        $this->status = $status;
 
         return $this;
     }
@@ -206,17 +184,42 @@ class Product
     /**
      * Get active
      *
-     * @return boolean 
+     * @return boolean
      */
-    public function isActive()
+    public function getActive()
     {
         return $this->active;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return Product
+     */
+    public function setActive ($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
     }
 
     /**
      * Set created
      *
      * @param \DateTime $created
+     *
      * @return Product
      */
     public function setCreated($created)
@@ -227,19 +230,20 @@ class Product
     }
 
     /**
-     * Get created
+     * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getCreated()
+    public function getUpdated ()
     {
-        return $this->created;
+        return $this->updated;
     }
 
     /**
      * Set updated
      *
      * @param \DateTime $updated
+     *
      * @return Product
      */
     public function setUpdated($updated)
@@ -250,20 +254,45 @@ class Product
     }
 
     /**
-     * Get updated
+     * Get vendor
      *
-     * @return \DateTime 
+     * @return \AppBundle\Entity\Vendor
      */
-    public function getUpdated()
+    public function getVendor ()
     {
-        return $this->updated;
+        return $this->vendor;
+    }
+
+    /**
+     * Set vendor
+     *
+     * @param \AppBundle\Entity\Vendor $vendor
+     *
+     * @return Product
+     */
+    public function setVendor (Vendor $vendor = null)
+    {
+        $this->vendor = $vendor;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Category
+     */
+    public function getCategory ()
+    {
+        return $this->category;
     }
 
     /**
      * Set category
      *
-     * @param Category $category
-     * @return Product
+     * @param \AppBundle\Entity\Category $category
+     *
+*@return Product
      */
     public function setCategory(Category $category = null)
     {
@@ -273,20 +302,33 @@ class Product
     }
 
     /**
-     * Get category
-     *
-     * @return \AppBundle\Entity\Category 
+     * @return string
      */
-    public function getCategory()
+    public function __toString ()
     {
-        return $this->category;
+        return $this->getName();
     }
 
     /**
+     * Get name
+     *
      * @return string
      */
-    public function __toString()
+    public function getName ()
     {
-        return $this->getName();
+        return $this->name;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Product
+     */
+    public function setName ($name)
+    {
+        $this->name = $name;
+
+        return $this;
     }
 }
