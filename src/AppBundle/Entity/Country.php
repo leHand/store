@@ -48,7 +48,7 @@ class Country
     /**
      * @var boolean
      *
-     * @ORM\Column(name="active", type="boolean", nullable=false, options={"unsigned":true})
+     * @ORM\Column(name="active", type="boolean", nullable=false)
      */
     private $active;
 
