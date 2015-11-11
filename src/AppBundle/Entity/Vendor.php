@@ -3,19 +3,24 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Vendor
  *
- * @ORM\Table()
+ * @ORM\Table(name="vendor",
+ *  indexes={
+ *      @ORM\Index(name="name_idx", columns={"name"})
+ * })
  * @ORM\Entity
+ * @UniqueEntity(fields={"name", "country"}, message="vendor.name.in_use")
  */
 class Vendor
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", options={"unsigned":true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -64,81 +69,9 @@ class Vendor
      *
      * @return integer
      */
-    public function getId ()
+    public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Get active
-     *
-     * @return boolean
-     */
-    public function getActive ()
-    {
-        return $this->active;
-    }
-
-    /**
-     * Set active
-     *
-     * @param boolean $active
-     *
-     * @return Vendor
-     */
-    public function setActive ($active)
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    /**
-     * Get created
-     *
-     * @return \DateTime
-     */
-    public function getCreated ()
-    {
-        return $this->created;
-    }
-
-    /**
-     * Set created
-     *
-     * @param \DateTime $created
-     *
-     * @return Vendor
-     */
-    public function setCreated ($created)
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
-    /**
-     * Get updated
-     *
-     * @return \DateTime
-     */
-    public function getUpdated ()
-    {
-        return $this->updated;
-    }
-
-    /**
-     * Set updated
-     *
-     * @param \DateTime $updated
-     *
-     * @return Vendor
-     */
-    public function setUpdated ($updated)
-    {
-        $this->updated = $updated;
-
-        return $this;
     }
 
     /**
@@ -146,7 +79,7 @@ class Vendor
      *
      * @return \AppBundle\Entity\Category
      */
-    public function getCountry ()
+    public function getCountry()
     {
         return $this->country;
     }
@@ -158,7 +91,7 @@ class Vendor
      *
      * @return Vendor
      */
-    public function setCountry (Country $country = null)
+    public function setCountry(Country $country = null)
     {
         $this->country = $country;
 
@@ -166,19 +99,11 @@ class Vendor
     }
 
     /**
-     * @return string
-     */
-    public function __toString ()
-    {
-        return $this->getName();
-    }
-
-    /**
      * Get name
      *
      * @return string
      */
-    public function getName ()
+    public function getName()
     {
         return $this->name;
     }
@@ -190,10 +115,92 @@ class Vendor
      *
      * @return Vendor
      */
-    public function setName ($name)
+    public function setName($name)
     {
         $this->name = $name;
 
         return $this;
     }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return Vendor
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return Vendor
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     *
+     * @return Vendor
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
 }

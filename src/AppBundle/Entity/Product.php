@@ -30,7 +30,7 @@ class Product
     private $id;
 
     /**
-     * @var integer
+     * @var Vendor
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Vendor")
      * @ORM\JoinColumns({
@@ -38,6 +38,16 @@ class Product
      * })
      */
     private $vendor;
+
+    /**
+     * @var Supplier
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Supplier")
+     * @ORM\JoinColumns({
+     *      @ORM\JoinColumn(name="supplier_id", referencedColumnName="id", onDelete="SET NULL")
+     * })
+     */
+    private $supplier;
 
     /**
      * @var string
@@ -61,7 +71,7 @@ class Product
     private $description;
 
     /**
-     * @var integer
+     * @var Category
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
      * @ORM\JoinColumns({
@@ -114,7 +124,7 @@ class Product
      *
      * @return string
      */
-    public function getPartNumber ()
+    public function getPartNumber()
     {
         return $this->partNumber;
     }
@@ -126,7 +136,7 @@ class Product
      *
 *@return Product
      */
-    public function setPartNumber ($partNumber)
+    public function setPartNumber($partNumber)
     {
         $this->partNumber = $partNumber;
 
@@ -150,7 +160,7 @@ class Product
      *
      * @return Product
      */
-    public function setDescription ($description)
+    public function setDescription($description)
     {
         $this->description = $description;
 
@@ -174,7 +184,7 @@ class Product
      *
      * @return Product
      */
-    public function setStatus ($status)
+    public function setStatus($status)
     {
         $this->status = $status;
 
@@ -186,7 +196,7 @@ class Product
      *
      * @return boolean
      */
-    public function getActive()
+    public function isActive()
     {
         return $this->active;
     }
@@ -198,7 +208,7 @@ class Product
      *
      * @return Product
      */
-    public function setActive ($active)
+    public function setActive($active)
     {
         $this->active = $active;
 
@@ -222,7 +232,7 @@ class Product
      *
      * @return Product
      */
-    public function setCreated($created)
+    public function setCreated(\DateTime $created)
     {
         $this->created = $created;
 
@@ -234,7 +244,7 @@ class Product
      *
      * @return \DateTime
      */
-    public function getUpdated ()
+    public function getUpdated()
     {
         return $this->updated;
     }
@@ -246,7 +256,7 @@ class Product
      *
      * @return Product
      */
-    public function setUpdated($updated)
+    public function setUpdated(\DateTime $updated)
     {
         $this->updated = $updated;
 
@@ -258,7 +268,7 @@ class Product
      *
      * @return \AppBundle\Entity\Vendor
      */
-    public function getVendor ()
+    public function getVendor()
     {
         return $this->vendor;
     }
@@ -270,7 +280,7 @@ class Product
      *
      * @return Product
      */
-    public function setVendor (Vendor $vendor = null)
+    public function setVendor(Vendor $vendor = null)
     {
         $this->vendor = $vendor;
 
@@ -282,7 +292,7 @@ class Product
      *
      * @return \AppBundle\Entity\Category
      */
-    public function getCategory ()
+    public function getCategory()
     {
         return $this->category;
     }
@@ -292,7 +302,7 @@ class Product
      *
      * @param \AppBundle\Entity\Category $category
      *
-*@return Product
+     * @return Product
      */
     public function setCategory(Category $category = null)
     {
@@ -304,7 +314,7 @@ class Product
     /**
      * @return string
      */
-    public function __toString ()
+    public function __toString()
     {
         return $this->getName();
     }
@@ -314,7 +324,7 @@ class Product
      *
      * @return string
      */
-    public function getName ()
+    public function getName()
     {
         return $this->name;
     }
@@ -325,10 +335,31 @@ class Product
      * @param string $name
      * @return Product
      */
-    public function setName ($name)
+    public function setName($name)
     {
         $this->name = $name;
 
         return $this;
     }
+
+    /**
+     * @return Supplier
+     */
+    public function getSupplier()
+    {
+        return $this->supplier;
+    }
+
+    /**
+     * Set Supplier
+     *
+     * @param \AppBundle\Entity\Supplier $supplier
+     *
+     * @return Product
+     */
+    public function setSupplier(Supplier $supplier = null)
+    {
+        $this->supplier = $supplier;
+    }
+
 }

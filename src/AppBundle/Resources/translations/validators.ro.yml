@@ -1,1 +1,4 @@
-country.code.invalid: Aceasta valoare este invalida
+country.code.invalid: This value is not a valid country
+account.email.in_use: This login is not available
+company.registration_number.in_use: This registration number is not available
+vendor.name.in_use: This name is not available
