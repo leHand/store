@@ -2,26 +2,20 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Base\BaseEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Country
  *
- * @ORM\Table()
+ * @ORM\Table(name="country")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CountryRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Country
+class Country extends BaseEntity
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned":true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+    const REPOSITORY = 'AppBundle:Country';
 
     /**
      * @var string
@@ -46,41 +40,10 @@ class Country
     private $currency;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="active", type="boolean", nullable=false)
-     */
-    private $active;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created", type="datetime", nullable=false)
-     */
-    private $created;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updated", type="datetime", nullable=false)
-     */
-    private $updated;
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set code
      *
      * @param string $code
+     *
      * @return Country
      */
     public function setCode($code)
@@ -104,6 +67,7 @@ class Country
      * Set name
      *
      * @param string $name
+     *
      * @return Country
      */
     public function setName($name)
@@ -127,6 +91,7 @@ class Country
      * Set currency
      *
      * @param string $currency
+     *
      * @return Country
      */
     public function setCurrency($currency)
@@ -147,74 +112,8 @@ class Country
     }
 
     /**
-     * Set active
-     *
-     * @param boolean $active
-     * @return Country
+     * @return string
      */
-    public function setActive($active)
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    /**
-     * Is active
-     *
-     * @return boolean 
-     */
-    public function isActive()
-    {
-        return $this->active;
-    }
-
-    /**
-     * Set created
-     *
-     * @param \DateTime $created
-     * @return Country
-     */
-    public function setCreated(\DateTime $created)
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
-    /**
-     * Get created
-     *
-     * @return \DateTime 
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * Set updated
-     *
-     * @param \DateTime $updated
-     * @return Country
-     */
-    public function setUpdated(\DateTime $updated)
-    {
-        $this->updated = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Get updated
-     *
-     * @return \DateTime 
-     */
-    public function getUpdated()
-    {
-        return $this->updated;
-    }
-
     public function __toString()
     {
         return (string) $this->getId();

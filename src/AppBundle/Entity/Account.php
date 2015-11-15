@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Base\BaseEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -17,17 +18,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity
  * @UniqueEntity(fields={"email"}, message="account.email.in_use")
  */
-class Account
+class Account extends BaseEntity
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", options={"unsigned":true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
     /**
      * @var string
      *
@@ -50,41 +42,10 @@ class Account
     private $email;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="active", type="boolean")
-     */
-    private $active;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created", type="datetime")
-     */
-    private $created;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updated", type="datetime")
-     */
-    private $updated;
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set username
      *
      * @param string $username
+     *
      * @return Account
      */
     public function setUsername($username)
@@ -108,6 +69,7 @@ class Account
      * Set password
      *
      * @param string $password
+     *
      * @return Account
      */
     public function setPassword($password)
@@ -131,6 +93,7 @@ class Account
      * Set email
      *
      * @param string $email
+     *
      * @return Account
      */
     public function setEmail($email)
@@ -148,75 +111,6 @@ class Account
     public function getEmail()
     {
         return $this->email;
-    }
-
-    /**
-     * Set active
-     *
-     * @param boolean $active
-     * @return Account
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    /**
-     * Get active
-     *
-     * @return boolean 
-     */
-    public function isActive()
-    {
-        return $this->active;
-    }
-
-    /**
-     * Set created
-     *
-     * @param \DateTime $created
-     * @return Account
-     */
-    public function setCreated(\DateTime $created)
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
-    /**
-     * Get created
-     *
-     * @return \DateTime 
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * Set updated
-     *
-     * @param \DateTime $updated
-     * @return Account
-     */
-    public function setUpdated(\DateTime $updated)
-    {
-        $this->updated = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Get updated
-     *
-     * @return \DateTime
-     */
-    public function getUpdated()
-    {
-        return $this->updated;
     }
 
     /**

@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
     /**
+     * Default Action
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
