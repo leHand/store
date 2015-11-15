@@ -22,6 +22,16 @@ class Supplier
     private $id;
 
     /**
+     * @var Country
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Country")
+     * @ORM\JoinColumns({
+     *      @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * })
+     */
+    private $country;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
@@ -61,9 +71,33 @@ class Supplier
     }
 
     /**
+     * Get country
+     *
+     * @return \AppBundle\Entity\Category
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set country
+     *
+     * @param Country $country
+     *
+     * @return Vendor
+     */
+    public function setCountry(Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+    /**
      * Set name
      *
      * @param string $name
+     *
      * @return Supplier
      */
     public function setName($name)
@@ -87,6 +121,7 @@ class Supplier
      * Set active
      *
      * @param boolean $active
+     *
      * @return Supplier
      */
     public function setActive($active)
@@ -110,6 +145,7 @@ class Supplier
      * Set created
      *
      * @param \DateTime $created
+     *
      * @return Supplier
      */
     public function setCreated($created)
@@ -133,6 +169,7 @@ class Supplier
      * Set updated
      *
      * @param \DateTime $updated
+     *
      * @return Supplier
      */
     public function setUpdated($updated)

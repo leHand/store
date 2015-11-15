@@ -94,6 +94,7 @@ class Category
      * Set name
      *
      * @param string $name
+     *
      * @return Category
      */
     public function setName($name)
@@ -117,6 +118,7 @@ class Category
      * Set active
      *
      * @param boolean $active
+     *
      * @return Category
      */
     public function setActive($active)
@@ -140,6 +142,7 @@ class Category
      * Set created
      *
      * @param \DateTime $created
+     *
      * @return Category
      */
     public function setCreated($created)
@@ -163,6 +166,7 @@ class Category
      * Set updated
      *
      * @param \DateTime $updated
+     *
      * @return Category
      */
     public function setUpdated($updated)
@@ -186,6 +190,7 @@ class Category
      * Set parentCategory
      *
      * @param \AppBundle\Entity\Category $parentCategory
+     *
      * @return Category
      */
     public function setParentCategory(Category $parentCategory = null)
@@ -209,6 +214,7 @@ class Category
      * Add childrenCategories
      *
      * @param \AppBundle\Entity\Category $childrenCategories
+     *
      * @return Category
      */
     public function addChildrenCategory(Category $childrenCategories)
@@ -241,7 +247,7 @@ class Category
     /**
      * @return string
      */
-    function __toString ()
+    public  function __toString()
     {
         return $this->getName();
     }
@@ -261,12 +267,15 @@ class Category
 
     /**
      * @Assert\IsTrue(message = "Parent category cannot be the same as child")
+     *
+     * @return bool
      */
     public function isNotSameAsParent()
     {
         if (!$this->getParentCategory()) {
             return true;
         }
+
         return $this->getId() !== $this->getParentCategory()->getId();
     }
     /**
