@@ -22,7 +22,8 @@
         "friendsofsymfony/jsrouting-bundle": "^1.5",
         "doctrine/doctrine-fixtures-bundle": "^2.2",
         "snc/redis-bundle": "^1.1",
-        "phpunit/phpunit": "3.7.28"
+        "phpunit/phpunit": "3.7.28",
+        "doctrine/doctrine-migrations-bundle": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
