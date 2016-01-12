@@ -8,7 +8,10 @@ use AppBundle\Entity\Base\BaseEntity;
 /**
  * PostalCode
  *
- * @ORM\Table(name="postal_code")
+ * @ORM\Table(name="postal_code",
+ *  indexes={
+ *      @ORM\Index(name="code_idx", columns={"code"})
+ * })
  * @ORM\Entity
  */
 class PostalCode extends BaseEntity
@@ -16,9 +19,12 @@ class PostalCode extends BaseEntity
     const REPOSITORY = 'AppBundle:PostalCode'; 
     
     /**
-     * @var integer
+     * @var Locality
      *
-     * @ORM\Column(name="locality", type="integer")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Locality")
+     * @ORM\JoinColumns({
+     *      @ORM\JoinColumn(name="locality_id", referencedColumnName="id")
+     * })
      */
     private $locality;
 
@@ -32,10 +38,11 @@ class PostalCode extends BaseEntity
     /**
      * Set locality
      *
-     * @param integer $locality
+     * @param Locality $locality
+     *
      * @return PostalCode
      */
-    public function setLocality($locality)
+    public function setLocality(Locality $locality = null)
     {
         $this->locality = $locality;
 
@@ -45,7 +52,7 @@ class PostalCode extends BaseEntity
     /**
      * Get locality
      *
-     * @return integer 
+     * @return \AppBundle\Entity\PostalCode
      */
     public function getLocality()
     {
