@@ -16,17 +16,27 @@ use AppBundle\Entity\Base\BaseEntity;
  */
 class PostalCode extends BaseEntity
 {
-    const REPOSITORY = 'AppBundle:PostalCode'; 
-    
+    const REPOSITORY = 'AppBundle:PostalCode';
+
     /**
      * @var Locality
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Locality")
      * @ORM\JoinColumns({
-     *      @ORM\JoinColumn(name="locality_id", referencedColumnName="id")
+     *      @ORM\JoinColumn(name="locality_id", referencedColumnName="id", nullable=true)
      * })
      */
     private $locality;
+
+    /**
+     * @var Region
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Region")
+     * @ORM\JoinColumns({
+     *      @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     * })
+     */
+    private $region;
 
     /**
      * @var string
@@ -60,9 +70,30 @@ class PostalCode extends BaseEntity
     }
 
     /**
+     * @return Region
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param Region $region
+     *
+     * @return PostalCode
+     */
+    public function setRegion(Region $region)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
      * Set code
      *
      * @param string $code
+     *
      * @return PostalCode
      */
     public function setCode($code)
@@ -83,8 +114,10 @@ class PostalCode extends BaseEntity
     }
 
     /**
-    *   Return code
-    */
+     * Return code
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this->getCode();

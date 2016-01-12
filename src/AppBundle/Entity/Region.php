@@ -16,7 +16,7 @@ use AppBundle\Entity\Base\BaseEntity;
  */
 class Region extends BaseEntity
 {
-    const REPOSITORY = 'AppBundle:Region'; 
+    const REPOSITORY = 'AppBundle:Region';
 
     /**
      * @var Country
@@ -35,7 +35,7 @@ class Region extends BaseEntity
      */
     private $name;
 
-	/**
+    /**
      * Get country
      *
      * @return \AppBundle\Entity\Category
